@@ -20,7 +20,8 @@ $users = [
         'activities' => [
             "school" => 'drawing',
             'home' => 'painting'
-        ]
+        ],
+        'email'=>'ahmed@gmail.com'
     ],
     (object)[
         'id' => 2,
@@ -34,7 +35,8 @@ $users = [
         'activities' => [
             "school" => 'painting',
             'home' => 'drawing'
-        ]
+        ],
+        'email'=>'mohamed@gmail.com'
     ],
     (object)[
         'id' => 3,
@@ -48,7 +50,9 @@ $users = [
         'activities' => [
             "school" => 'painting',
             'home' => 'drawing'
-        ]
+        ],
+        'email'=>''
+    
     ],
 ];
 
@@ -67,27 +71,47 @@ $users = [
   <body>
     <table class="table">
         <thead class="thead-primary">
-            
+            <tr>
         <?php foreach ($users[0] as $prop=>$value) {        
                      $ths=  "<th>" . $prop . "</th>";
                      echo $ths;
                   
                 }
-              
                   ?>
-                   
-        <!-- </thead>
+                </tr>   
+       </thead>
         <tbody>
         <?php 
-        // foreach($users as $index=>$val){ -->
-        // $trs= "<tr>";
-        // <?php foreach($val as $pro=>$type){
-        // $trs.= "<td></td>";
-        // $trs.="</tr>";
-        // echo $trs;
-        // }}
-        ?>  -->
+   
+       foreach($users as $index=>$val){ 
+        $trs= "<tr>";
+        foreach($val as $pro=>$type){
+            $trs.= "<td>";
+            if(gettype($type)=="array" || gettype($type)=="object"){
+             foreach ($type as $k=>$va){
+            if($pro=="gender"){
+             if($va=='m'){
 
+                $va='male';}
+                else{
+                $va="female";
+             }   
+            }
+                    $trs.="$va ,";    
+            }
+           
+        }
+            else{
+            $trs.="$type";
+        }
+
+            $trs.="</td>";
+            } 
+        $trs.="</tr>";
+        echo $trs; 
+        
+        }
+        ?> 
        
         </tbody>
     </table>
